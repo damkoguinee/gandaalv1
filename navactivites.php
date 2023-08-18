@@ -6,7 +6,9 @@
 
 		if ($products['type']=='admin' or $products['type']=='fondateur' or $products['type']=='comptable' or $products['type']=='informaticien' or $products['type']=='secrétaire' or $products['type']=='bibliothecaire') {?>
 
-			<div class="row mt-3"><div class=" col text-center"><a style="width: 100%; " class="btn btn-light text-center fw-bold" href="activitespaie.php">Liste des Paiements</a></div></div>
+			<div class="row mt-3"><div class=" col text-center"><a style="width: 100%; " class="btn btn-light text-center fw-bold" href="activitespaie.php">Liste des Paiements des internes</a></div></div>
+
+			<div class="row mt-3"><div class=" col text-center"><a style="width: 100%; " class="btn btn-light text-center fw-bold" href="activitespaieexterne.php">Liste des Paiements des externes</a></div></div>
 
 			<div class="row mt-3"><div class=" col text-center"><a style="width: 100%; " class="btn btn-light text-center fw-bold" href="activitesgestion.php?ideleve&liste">Paiement activités</a></div></div><?php 
 		}

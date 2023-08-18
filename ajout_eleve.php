@@ -25,19 +25,16 @@ if (isset($_SESSION['pseudo'])) {
 					<div class="col-sm-12 col-md-10"><?php
 
 						$nb=$DB->querys('SELECT count(id) as id from matricule where etat=? and annee=?', array('inscription', $_SESSION['promo']));
-
-				    	$matnew=(date('y') . '000')+($nb['id']+1);
+						$anneeins=substr($_SESSION['promo'],2,4);
+						$matnew=($anneeins . '000')+($nb['id']+1);
 						$matnew=$rapport->infoEtablissement()["initial"].$matnew;
 				    	$matnew=$matnew;
-
 						if (isset($_POST['group'])) {
 							$codef=$panier->classeInfos($_POST['group'], $_SESSION['promo'])[0];						
 							$niveau=$panier->classeInfos($_POST['group'], $_SESSION['promo'])[2];						
 						}
 
 						$prodgroupe=$DB->query("SELECT nomgr from groupe where promo='{$_SESSION['promo']}'");
-
-
 						if (isset($_GET['ajoute']) or isset($_POST['ajoutel']) or isset($_GET['niveau']) or isset($_POST['group'])) {
 							// Ajouter un eleve à la base de données
 
@@ -96,9 +93,7 @@ if (isset($_SESSION['pseudo'])) {
 										$initiale='';
 
 									}else{
-
-										$anneeins=(new dateTime($_SESSION['promo']))->format("y");
-
+										$anneeins=substr($_SESSION['promo'],2,4);
 										$matricule=($anneeins . '000')+($nb['id']+1);
 										$initiale=$rapport->infoEtablissement()["initial"];
 									}
@@ -262,7 +257,7 @@ if (isset($_SESSION['pseudo'])) {
 					            	if ($rapport->codefSuivant($codef)[4]=='creche') {
 										$fraisreins=1;
 									}elseif ($rapport->codefSuivant($codef)[4]=='maternelle') {
-										$fraisreins=1;
+										$fraisreins=2;
 									}elseif ($rapport->codefSuivant($codef)[4]=='primaire') {
 										$fraisreins=3;
 									}elseif ($rapport->codefSuivant($codef)[4]=='college') {

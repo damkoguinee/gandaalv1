@@ -322,7 +322,7 @@ if (isset($_SESSION['pseudo'])) {
                                 }else{
 
                                     $matricule=$nb['id']+1;
-                                    $matricule=$rapport->init['2'].$matricule;
+                                    $matricule="csp".$matricule;
                                 }
                                 $pseudo=$prenom[0].$nom.$matricule[4];
                                 $mdp=$matricule;

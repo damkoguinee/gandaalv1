@@ -53,20 +53,20 @@ if (isset($_SESSION['pseudo'])) {
 
 							$_SESSION['searchelevegen']=$_GET['ideleve'];
 
-							$prod=$DB->query("SELECT activitespaiehistorique.id as id, numeropaie, matp, montantp, moisp, idact, nomgr, dateop FROM activitespaiehistorique left join inscription on matricule=matp left join elevexterne on matex=matp where matp='{$_SESSION['searchelevegen']}' and anneep='{$_SESSION['promo']}' and annee='{$_SESSION['promo']}'  order by(idact) ");
+							$prod=$DB->query("SELECT activitespaiehistorique.id as id, numeropaie, matp, montantp, moisp, idact, dateop FROM activitespaiehistorique inner join elevexterne on matex=matp where matp='{$_SESSION['searchelevegen']}' and anneep='{$_SESSION['promo']}'  order by(idact) ");
 						}elseif (isset($_POST['idact']) and $_POST['idact']!='general'){
 
 							if (!empty($_SESSION['searchelevegen'])) {
 								
-								$prod=$DB->query("SELECT activitespaiehistorique.id as id, numeropaie, matp, montantp, moisp, idact, nomgr, dateop FROM activitespaiehistorique left join inscription on matricule=matp left join elevexterne on matex=matp where matp='{$_SESSION['searchelevegen']}' and idact='{$_POST['idact']}' and anneep='{$_SESSION['promo']}' and annee='{$_SESSION['promo']}'  order by(idact) ");
+								$prod=$DB->query("SELECT activitespaiehistorique.id as id, numeropaie, matp, montantp, moisp, idact, dateop FROM activitespaiehistorique inner join elevexterne on matex=matp where matp='{$_SESSION['searchelevegen']}' and idact='{$_POST['idact']}' and anneep='{$_SESSION['promo']}'  order by(idact) ");
 
 							}else{
 
-								$prod=$DB->query("SELECT activitespaiehistorique.id as id, numeropaie, matp, montantp, moisp, idact, nomgr, dateop FROM activitespaiehistorique left join inscription on matricule=matp left join elevexterne on matex=matp where idact='{$_POST['idact']}' and anneep='{$_SESSION['promo']}' and annee='{$_SESSION['promo']}'  order by(idact) ");
+								$prod=$DB->query("SELECT activitespaiehistorique.id as id, numeropaie, matp, montantp, moisp, idact, dateop FROM activitespaiehistorique inner join elevexterne on matex=matp where idact='{$_POST['idact']}' and anneep='{$_SESSION['promo']}'  order by(idact) ");
 							}
 
 						}else{
-							$prod=$DB->query("SELECT activitespaiehistorique.id as id, numeropaie, matp, montantp, moisp, idact, nomgr, dateop FROM activitespaiehistorique inner join inscription on matricule=matp left join elevexterne on matex=matp where anneep='{$_SESSION['promo']}' and annee='{$_SESSION['promo']}'  order by(idact) ");
+							$prod=$DB->query("SELECT activitespaiehistorique.id as id, numeropaie, matp, montantp, moisp, idact, dateop FROM activitespaiehistorique inner join elevexterne on matex=matp where anneep='{$_SESSION['promo']}'  order by(idact) ");
 
 							unset($_SESSION['searchelevegen']);
 
@@ -74,7 +74,7 @@ if (isset($_SESSION['pseudo'])) {
 
                         <table class="table table-hover table-bordered table-striped table-responsive text-center">
                             <thead>
-                                <tr><th colspan="9">Paiements des activités internes</th></tr>
+                                <tr><th colspan="9">Paiements des activités externes</th></tr>
 
                                 <tr>
                                 	<th colspan="9">

@@ -69,7 +69,7 @@ if (isset($_GET['enseignant'])) {
 
 						<div class="alert alert-success">Reinscription reussie !!!</div><?php
 
-						require ('fiche_eleve.php');
+						//require ('fiche_elevegen.php');
 					}
 
 				}else{?>	
@@ -191,7 +191,7 @@ if (isset($_GET['enseignant'])) {
 
 						<li>
 							<label>Frais d'inscription*</label>
-							<input style="font-size: 25px;" type="text" name="mp" value="<?=$rapport->fraisins($fraisreins,"inscription")['montant'];?>" required=""/>
+							<input style="font-size: 25px;" type="text" name="mp" value="<?=$rapport->fraisins($fraisreins,"reinscription")['montant'];?>" required=""/>
 						</li>
 
 						<li><label>Dévise*</label>

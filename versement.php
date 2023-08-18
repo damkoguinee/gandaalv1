@@ -68,7 +68,7 @@ if (isset($_SESSION['pseudo'])) {
 
         if (isset($_POST["valid"])) {
 
-          if (empty($_POST["client"]) or empty($_POST["montant"]) or empty($_POST['devise'])) {?>
+          if (!empty($_POST["client"]) ) {?>
 
             <div class="alert alert-danger">Les Champs sont vides</div><?php
 
@@ -80,9 +80,7 @@ if (isset($_SESSION['pseudo'])) {
             $_SESSION['alertescheque']=$alertescheque;
 
           }else{
-
             unset($_SESSION['alertescheque']);
-
             $montantp=$panier->h($_POST['montant']);
             $devise=$panier->h($_POST['devise']);
             $client=$panier->h($_POST['client']);
@@ -345,7 +343,7 @@ if (isset($_SESSION['pseudo'])) {
                     }?>
                   </div>
                   <div class="col sm-12 col-md-2">
-                    <a style="margin-left: 10px;"href="printversegenerale.php?printdep&date1=<?=$_SESSION['date1'];?>&date2=<?=$_SESSION['date2'];?>&type=<?=$_SESSION['com'];?>&datenormale=<?=$datenormale;?>" target="_blank"><img  style="height: 20px; width: 20px;" src="css/img/pdf.jpg"></a><a style="margin-left: 10px;"href="exportversement.php?dec" target="_blank"><img  style="height: 20px; width: 20px;" src="css/img/excel.jpg"></a>
+                    <a style="margin-left: 10px;"href="printversegenerale.php?printdep&date1=<?=$_SESSION['date1'];?>&date2=<?=$_SESSION['date2'];?>&type&datenormale=<?=$datenormale;?>" target="_blank"><img  style="height: 20px; width: 20px;" src="css/img/pdf.jpg"></a><a style="margin-left: 10px;"href="exportversement.php?dec" target="_blank"><img  style="height: 20px; width: 20px;" src="css/img/excel.jpg"></a>
                   </div>
                 </div>
               </th>

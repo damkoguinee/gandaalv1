@@ -37,6 +37,7 @@ if (isset($_SESSION['pseudo'])) {
 							$prodpaie=$DB->querys("SELECT id, montantp FROM activitespaiement WHERE matp='{$matp}' and moisp='{$moisp}' and idact='{$idact}' and anneep='{$anneep}' ");
 
 							$payer=$prodpaie['montantp']-$montants;
+                            var_dump($prodpaie['montantp'],$montants);
 							$etat='encours';
 
 							$DB->insert("UPDATE activitespaiement SET montantp='{$payer}' where matp='{$matp}' and idact='{$idact}' and moisp='{$moisp}' and anneep='{$anneep}' ");
@@ -57,10 +58,10 @@ if (isset($_SESSION['pseudo'])) {
 
                         if (isset($_POST['moisp'])) {
                             
-                            $prod=$DB->query("SELECT * FROM activitespaiement left join inscription on matricule=matp left join elevexterne on matex=matp where moisp='{$_POST['moisp']}' and idact='{$_SESSION['listeeleve']}' and anneep='{$_SESSION['promo']}'  order by(idact) ");
+                            $prod=$DB->query("SELECT * FROM activitespaiement left join inscription on matricule=matp left join elevexterne on matex=matp where moisp='{$_POST['moisp']}' and idact='{$_SESSION['listeeleve']}' and anneep='{$_SESSION['promo']}' and annee='{$_SESSION['promo']}'  order by(idact) ");
                         }else{
 
-                            $prod=$DB->query("SELECT * FROM activitespaiement left join inscription on matricule=matp left join elevexterne on matex=matp where idact='{$_SESSION['listeeleve']}' and anneep='{$_SESSION['promo']}'  order by(idact) ");
+                            $prod=$DB->query("SELECT * FROM activitespaiement left join inscription on matricule=matp left join elevexterne on matex=matp where idact='{$_SESSION['listeeleve']}' and anneep='{$_SESSION['promo']}' and annee='{$_SESSION['promo']}'  order by(idact) ");
                         }?>
 
                         <table class="table table-hover table-bordered table-striped table-responsive text-center">
@@ -144,8 +145,8 @@ if (isset($_SESSION['pseudo'])) {
                                         <td><?=number_format($value->montantp,0,',',' ');?></td>
                                         <td><?=$dated;?></td><?php
 
-                                		if ($products['type']=='admin' or $products['type']=='informaticien') {?>
-                                        	<td><a class="btn btn-danger" href="activitespaie.php?delete=<?=$value->id;?>&matp=<?=$value->matp;?>&promo=<?=$_SESSION['promo'];?>&idactvoir=<?=$value->idact;?>&moisp=<?=$value->moisp;?>&montantp=<?=$value->montantp;?>&numeropaie=<?=$value->numeropaie;?>" onclick="return alerteV();">Annuler</a></td><?php 
+                                		if ($products['type']=='admin' or $products['type']=='comptable' or $products['type']=='bibliothecaire') {?>
+                                        	<td><a class="btn btn-danger" href="?delete=<?=$value->id;?>&matp=<?=$value->matp;?>&promo=<?=$_SESSION['promo'];?>&idactvoir=<?=$value->idact;?>&moisp=<?=$value->moisp;?>&montantp=<?=$value->montantp;?>&numeropaie=<?=$value->numeropaie;?>" onclick="return alerteV();">Annuler</a></td><?php 
                                         }?>
                                     </tr><?php 
                                 }?>

@@ -377,7 +377,7 @@ if (!isset($_GET['modif_eleve'])) {
 	      $terme = strip_tags($terme); //pour supprimer les balises html dans la requête
 	      $terme = strtolower($terme);
 
-	      $prodeleve =$DB->query('SELECT nomel, prenomel, adresse, sexe, pere, mere, DATE_FORMAT(naissance, \'%Y\')AS naissance, inscription.matricule as matricule, phone, nomgr, etatscol from eleve inner join inscription on eleve.matricule=inscription.matricule left join contact on inscription.matricule=contact.matricule WHERE (eleve.matricule LIKE ? or nomel LIKE ? or prenomel LIKE ? or phone LIKE ?) LIMIT '.$depart.','.$nbreparpage,array("%".$terme."%", "%".$terme."%", "%".$terme."%", "%".$terme."%"));
+	      $prodeleve =$DB->query('SELECT inscription.matricule as matricule,nomel, prenomel, adresse, sexe, pere, mere, DATE_FORMAT(naissance, \'%Y\')AS naissance, phone, nomgr, etatscol from eleve inner join inscription on eleve.matricule=inscription.matricule left join contact on inscription.matricule=contact.matricule WHERE annee LIKE ? AND (eleve.matricule LIKE ? or nomel LIKE ? or prenomel LIKE ? or phone LIKE ?) ',array(($_SESSION['promo']-1),"%".$terme."%", "%".$terme."%", "%".$terme."%", "%".$terme."%"));
 	      
 	    }else{
 

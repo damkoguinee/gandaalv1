@@ -233,8 +233,7 @@ if (isset($_SESSION['pseudo'])) {
 
 					if(isset($_POST['ajouteen'])){
 
-						if($_POST['nom']!="" and $_POST['prenom']!=""  and $_POST['perso']!=""){
-							
+						if($_POST['nom']!="" and $_POST['prenom']!=""  and $_POST['perso']!=""){							
 							$nom=$panier->h(($_POST['nom']));
 							$prenom=$panier->h(($_POST['prenom']));
 							$phone=$panier->h(($_POST['tel']));
@@ -283,7 +282,7 @@ if (isset($_SESSION['pseudo'])) {
 									}else{
 
 										$matricule=$nb['id']+1;
-										$matricule=$rapport->init['1'].$matricule;
+										$matricule="csp".$matricule;
 									}
 									$pseudo=$prenom[0].$nom.$matricule[4];
 									$mdp=$matricule;
@@ -404,20 +403,15 @@ if (isset($_SESSION['pseudo'])) {
 						}
 						$DB->insert('UPDATE enseignant SET matricule=?, nomen = ?, prenomen=?, sexe=?, numbanq=?, agencebanq=?, datenaiss=?, lieunaiss=?, embauche=?, adresse=? WHERE matricule = ?', array($matc, $nom, $prenom, $sexe, $numbanq, $agencebanq, $datenaiss, $lieunaiss, $embauche, $adresse, $_POST['mat']));
 						$DB->insert('UPDATE salaireens SET numpers=? WHERE numpers = ?', array($matc, $_POST['mat']));
-
 						$DB->insert('UPDATE ssocialens SET numpers=?, montant=? WHERE numpers = ?', array($matc, $ss, $_POST['mat']));
-
 						$DB->insert('UPDATE prime SET numpersp=?, montantp=? WHERE numpersp = ?', array($matc, $prime, $_POST['mat']));
-
-						$DB->insert('UPDATE events SET codensp=? WHERE codensp = ?', array($matc, $_POST['mat']));
-						
+						$DB->insert('UPDATE events SET codensp=? WHERE codensp = ?', array($matc, $_POST['mat']));						
 						$DB->insert('UPDATE enseignement SET codens=? WHERE codens = ?', array($matc, $_POST['mat']));
 						$DB->insert('UPDATE payenseignant SET matricule=? WHERE matricule=?', array($matc, $_POST['mat']));
 						$DB->insert('UPDATE histopayenseignant SET matricule=? WHERE matricule=?', array($matc, $_POST['mat']));
 						$DB->insert('UPDATE horairet SET numens=? WHERE numens=?', array($matc, $_POST['mat']));
-
 						$DB->insert('UPDATE liaisonenseigpers SET matricule=? WHERE matricule=?', array($matc, $_POST['mat']));
-						$DB->insert('UPDATE enseignantencours SET matriculeNS=? WHERE matriculens=?', array($matc, $_POST['mat']));
+						$DB->insert('UPDATE enseignantencours SET matriculens=? WHERE matriculens=?', array($matc, $_POST['mat']));
 
 						$matricule=$_POST['matc'];
 
@@ -729,20 +723,16 @@ if (isset($_SESSION['pseudo'])) {
 					if (isset($_GET['enseig']) or isset($_POST['ajouteen']) or isset($_GET['termec'])  or isset($_GET['termep']) or isset($_GET['del_en']) or isset($_GET['del_pers']) or isset($_POST['modifen']) or isset($_GET['matiereen']) or isset($_GET['personnel']) or isset($_GET['payempcherc']) or isset($_GET['livrens']) or isset($_GET['page'])) {
 
 						if (isset($_GET['del_en'])) {
-
 							$DB->delete('DELETE FROM enseignant WHERE matricule = ?', array($_GET['del_en']));
 							$DB->delete('DELETE FROM contact WHERE matricule = ?', array($_GET['del_en']));
 							$DB->delete('DELETE FROM login WHERE matricule = ?', array($_GET['del_en']));
-
 							$DB->delete('DELETE FROM salaireens WHERE numpers = ?', array($_GET['del_en']));
-
 							$DB->delete('DELETE FROM ssocialens WHERE numpers = ?', array($_GET['del_en']));
-
-							$DB->delete('DELETE FROM prime WHERE numpersp = ?', array($_GET['del_en']));
-							
+							$DB->delete('DELETE FROM prime WHERE numpersp = ?', array($_GET['del_en']));							
 							$DB->delete('DELETE FROM niveauc WHERE matricule = ?', array($_GET['del_en']));
-
-							$DB->delete('DELETE FROM niveau WHERE matricule = ?', array($_GET['del_en']));?>
+							$DB->delete('DELETE FROM niveau WHERE matricule = ?', array($_GET['del_en']));
+							$DB->delete("DELETE  FROM enseignantencours where matriculens='{$_GET['del_en']}' ");
+							?>
 
 							<div class="alert alert-success">Suppression reussie!!!</div><?php 
 						}
@@ -824,7 +814,7 @@ if (isset($_SESSION['pseudo'])) {
 											foreach ($prodm as $key=> $formation) {?>
 
 												<tr>
-													<td style="text-align: center;"><?=$keye;?></td>
+													<td style="text-align: center;"><?=$key+1;?></td>
 													<td style="text-align: center; font-size: 14px;"><?php
 														if (isset($_GET['payempcherc'])) {?>
 															
