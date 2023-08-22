@@ -81,7 +81,7 @@
                             </div><?php
                         }?>
                         <div class="col m-auto mt-1">
-                            <a  class="btn btn-light" href="#">
+                            <a  class="btn btn-light" href="accesite.php">
                                 <div class="card" style="width: 9rem;">
                                 <img src="css/img/acces.jpg" class="card-img-top m-auto" alt="..."style="width: 7rem; height: 7rem">
                                 <div class="card-bod m-auto" style="width: 9rem;">
@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="col m-auto mt-1">
-                            <a  class="btn btn-light" href="#">
+                            <a  class="btn btn-light" href="cantine/choix.php">
                                 <div class="card" style="width: 9rem;">
                                 <img src="css/img/cantine.jpg" class="card-img-top m-auto" alt="..."style="width: 7rem; height: 7rem">
                                 <div class="card-bod m-auto" style="width: 9rem;">
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="col m-auto mt-1">
-                            <a  class="btn btn-light" href="#">
+                            <a  class="btn btn-light" href="immogestion.php">
                                 <div class="card" style="width: 9rem;">
                                 <img src="css/img/immo.jpg" class="card-img-top m-auto" alt="..."style="width: 7rem; height: 7rem">
                                 <div class="card-bod m-auto" style="width: 9rem;">

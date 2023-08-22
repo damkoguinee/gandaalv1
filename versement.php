@@ -184,7 +184,7 @@ if (isset($_SESSION['pseudo'])) {
                     }
 
                     foreach($panier->listeEleve() as $product){?>
-                      <option value="<?=$product->matricule;?>"><?=ucwords(strtolower($product->nomel)).' '.strtoupper(strtolower($product->nomel));?></option><?php
+                      <option value="<?=$product->matricule;?>"><?=ucwords(strtolower($product->nomel)).' '.strtoupper(strtolower($product->prenomel));?></option><?php
                     }?>
                   </select>
 

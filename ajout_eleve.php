@@ -407,7 +407,7 @@ if (isset($_SESSION['pseudo'])) {
 
 												<li>
 													<label>Né le*</label>
-													<input type="date" name="daten" value="<?=$preinscrit['naissance'];?>" max="<?=$panier->datemin(2)[0];?>"  required="">
+													<input type="date" name="daten" value="<?=$preinscrit['naissance'];?>"  required="">
 														
 												</li>
 

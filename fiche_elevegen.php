@@ -73,7 +73,7 @@ require 'headerv2.php';?>
             $fiche=$DB->querys('SELECT eleve.matricule as mat, nomel, prenomel, pere, telpere, mere, telmere, date_format(naissance,\'%d/%m/%Y \') as naiss, adresse, nationnalite, profp, profm, lieutp, lieutm, adressep, phone, email , annee, nomf, classe, nomgr, nomtut, teltut, formation.codef as codef, etatscol, etat, statut, dateinscription from eleve left join contact on eleve.matricule=contact.matricule left join inscription on eleve.matricule=inscription.matricule inner join formation on inscription.codef=formation.codef left join tuteur on eleve.matricule=tuteur.matricule where eleve.matricule=:mat and annee=:promo', array('mat'=>$mat, 'promo'=>$_SESSION['promo']));
 
             if ($fiche['etatscol']=='actif') {
-                $color='rgba(1, 175, 80, 0.3)';
+                $color="success";
                 $etatscol='actif';
             }else{
                 $color='danger';
@@ -185,7 +185,7 @@ require 'headerv2.php';?>
 
                                 <li class="fw-bold"><label class="label">Tél du Tuteur</label> <?=$fiche['teltut'];?></li>
 
-                                <li class="fw-bold mt-5"><label class="label">Etat</label><a onclick="return alerteV();" class="btn btn-danger" href="fiche_elevegen.php?etatscol=<?=$etatscol;?>&fiche_eleve=<?=$mat;?>&promo=<?=$_SESSION['promo'];?>"><button class="btn btn-danger" type="button" ><?=strtoupper($etatscol);?></button></a></li>   
+                                <li class="fw-bold mt-5"><label class="label">Etat</label><a onclick="return alerteV();" class="btn btn-<?=$color;?>" href="fiche_elevegen.php?etatscol=<?=$etatscol;?>&fiche_eleve=<?=$mat;?>&promo=<?=$_SESSION['promo'];?>"><?=strtoupper($etatscol);?></button></a></li>   
                                 
                                 <div class="modal" tabindex="-1">
   

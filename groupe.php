@@ -482,8 +482,13 @@ require 'headerv2.php';?>
 											<th><?=$cumulanciens;?></th>
 											<th><?=$cumulnouveaux;?></th>
 											<th><?=$cumulanciens+$cumulnouveaux;?></th>
-											<th><?=$cumulredoublants;?></th>
-											<th><?=number_format(($cumulnouveaux/($cumulanciens+$cumulnouveaux))*100,2,',',' ');?></th>
+											<th><?=$cumulredoublants;?></th><?php 
+											if (empty(($cumulanciens+$cumulnouveaux))) {?>
+												<th>0,00</th><?php 
+											}else{?>
+												<th><?=number_format(($cumulnouveaux/($cumulanciens+$cumulnouveaux))*100,2,',',' ');?></th><?php 
+
+											}?>
 										</tr><?php
 									}?>
 								</tbody><?php

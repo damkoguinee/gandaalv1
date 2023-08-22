@@ -60,16 +60,16 @@ if (isset($_SESSION['pseudo'])) {
                                     $DB->insert("INSERT INTO accesite(mat_acces, journee, date_acces)VALUES(?,?,now())", array($matricule,$journee));
 
                                     if ($panier->isInternetConnected()) { // pour savoir si connexion à internet                                        
-                                        $destinataire=$email;
-                                        $message="bonjour, votre fils/fille ".$panier->nomEleve($matricule)." est présent(e) à l'école ";
-                                        ini_set( 'display_errors', 1);
-                                        error_reporting( E_ALL );
-                                        $from = "damkoguinee.com";
-                                        $to =$destinataire;
-                                        $subject = "notification de présence";
-                                        $message = $message;
-                                        $headers = "From:" . $from;
-                                        mail($to,$subject,$message, $headers);
+                                        // $destinataire=$email;
+                                        // $message="bonjour, votre fils/fille ".$panier->nomEleve($matricule)." est présent(e) à l'école ";
+                                        // ini_set( 'display_errors', 1);
+                                        // error_reporting( E_ALL );
+                                        // $from = "damkoguinee.com";
+                                        // $to =$destinataire;
+                                        // $subject = "notification de présence";
+                                        // $message = $message;
+                                        // $headers = "From:" . $from;
+                                        // mail($to,$subject,$message, $headers);
                                     }
                                       
                                 }                              
